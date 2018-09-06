@@ -46,5 +46,8 @@ typedef struct Taint {
 #define TAINT_DEVICE_SN     ((u4)0x00002000) /* Device serial number */
 #define TAINT_ACCOUNT       ((u4)0x00004000) /* User account information */
 #define TAINT_HISTORY       ((u4)0x00008000) /* browser history */
+/* begin WITH_TAINT_TRACKING_GABOR */
+#define TAINT_SSLINPUT      ((u4)0x00010000) /* Input of SSL connections */
+/* end WITH_TAINT_TRACKING_GABOR */
 
 #endif /*_DALVIK_INTERP_TAINT*/
