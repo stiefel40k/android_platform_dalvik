@@ -77,6 +77,9 @@ bool dvmCheckAsmConstants()
  */
 void dvmMterpStd(Thread* self)
 {
+#ifdef LOG_INSTR
+    ALOGD("|-- Entering (m)interpreter loop");
+#endif
     /* configure mterp items */
     self->interpSave.methodClassDex = self->interpSave.method->clazz->pDvmDex;
 

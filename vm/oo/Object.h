@@ -281,6 +281,7 @@ struct ArrayObject : Object {
 #ifdef WITH_TAINT_TRACKING
     Taint           taint;
 #endif
+
     /*
      * Array contents; actual size is (length * sizeof(type)).  This is
      * declared as u8 so that the compiler inserts any necessary padding
@@ -595,6 +596,10 @@ struct Method {
 
     /* set if method was called during method profiling */
     bool            inProfile;
+
+#ifdef WITH_HOUDINI
+    bool            needHoudini;
+#endif
 };
 
 
@@ -706,6 +711,14 @@ INLINE bool dvmIsFinalMethod(const Method* method) {
 INLINE bool dvmIsNativeMethod(const Method* method) {
     return (method->accessFlags & ACC_NATIVE) != 0;
 }
+#ifdef WITH_HOUDINI
+INLINE void dvmSetHoudiniMethod(Method* method, bool needHoudini) {
+    method->needHoudini = needHoudini;
+}
+INLINE bool dvmNeedHoudiniMethod(const Method* method) {
+    return (method->needHoudini);
+}
+#endif
 INLINE bool dvmIsAbstractMethod(const Method* method) {
     return (method->accessFlags & ACC_ABSTRACT) != 0;
 }

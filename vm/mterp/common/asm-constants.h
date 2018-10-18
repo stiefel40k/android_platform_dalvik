@@ -230,6 +230,7 @@ MTERP_OFFSET(offThread_interpStackSize,   Thread, interpStackSize, 80)
 MTERP_OFFSET(offThread_stackOverflowed,   Thread, stackOverflowed, 84)
 MTERP_OFFSET(offThread_mainHandlerTable,  Thread, mainHandlerTable, 92)
 MTERP_OFFSET(offThread_singleStepCount,   Thread, singleStepCount, 100)
+MTERP_OFFSET(offThread_dummy,   Thread, dummy, 104)
 #else
 //48
 MTERP_OFFSET(offThread_subMode, \

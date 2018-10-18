@@ -43,6 +43,9 @@ endif
 # Optional features.  These may impact the size or performance of the VM.
 #
 
+# Houdini support
+LOCAL_CFLAGS += -DMTERP_NO_UNALIGN_64
+
 # Make a debugging version when building the simulator (if not told
 # otherwise) and when explicitly asked.
 dvm_make_debug_vm := false

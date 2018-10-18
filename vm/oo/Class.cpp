@@ -4493,8 +4493,10 @@ noverify:
     method = dvmFindDirectMethodByDescriptor(clazz, "<clinit>", "()V");
     if (method == NULL) {
         LOGVV("No <clinit> found for %s", clazz->descriptor);
+        ALOGI("No <clinit> found for %s", clazz->descriptor);
     } else {
         LOGVV("Invoking %s.<clinit>", clazz->descriptor);
+        ALOGI("Invoking %s.<clinit> (%s)", clazz->descriptor, method->name);
         JValue unused;
         dvmCallMethod(self, method, NULL, &unused);
     }

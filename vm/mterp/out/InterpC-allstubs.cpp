@@ -3512,6 +3512,7 @@ void dvmMterpStdRun(Thread* self)
     /* We exit via a longjmp */
     if (setjmp(jmpBuf)) {
         LOGVV("mterp threadid=%d returning", dvmThreadSelf()->threadId);
+        ALOGD("mterp threadid=%d returning", dvmThreadSelf()->threadId);
         return;
     }
 
@@ -3532,6 +3533,8 @@ void dvmMterpStdRun(Thread* self)
         Handler handler = (Handler) gDvmMterpHandlers[inst & 0xff];
         (void) gDvmMterpHandlerNames;   /* avoid gcc "defined but not used" */
         LOGVV("handler %p %s",
+            handler, (const char*) gDvmMterpHandlerNames[inst & 0xff]);
+        ALOGD("handler %p %s",
             handler, (const char*) gDvmMterpHandlerNames[inst & 0xff]);
         (*handler)(self);
     }

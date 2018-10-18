@@ -109,4 +109,5 @@ dvmNcgInvokeInterpreter:
     .section    .rodata
 .LstrBadEntryPoint:
     .asciz  "Bad entry point %d\n"
-
+.LstMyString:
+    .asciz  "somestring\n"

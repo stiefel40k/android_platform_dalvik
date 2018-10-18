@@ -709,7 +709,6 @@ bool dvmPrepMainThread()
         ALOGE("thread classes failed to initialize");
         return false;
     }
-
     groupObj = dvmGetMainThreadGroup();
     if (groupObj == NULL)
         return false;

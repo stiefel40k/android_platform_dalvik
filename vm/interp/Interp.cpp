@@ -1967,15 +1967,20 @@ void dvmInterpret(Thread* self, const Method* method, JValue* pResult)
     Interpreter stdInterp;
     if (gDvm.executionMode == kExecutionModeInterpFast)
         stdInterp = dvmMterpStd;
-#if defined(WITH_JIT)
+#if defined(WITH_JIT) && ! defined(TAINT_IS_86)
     else if (gDvm.executionMode == kExecutionModeJit ||
              gDvm.executionMode == kExecutionModeNcgO0 ||
              gDvm.executionMode == kExecutionModeNcgO1)
-        stdInterp = dvmMterpStd;
+      stdInterp = dvmMterpStd;
 #endif
     else
         stdInterp = dvmInterpretPortable;
+    
 
+//#if TAINT_IS_86
+//    ALOGD("Interp.cpp: using portable interpreter");
+//    stdInterp = dvmInterpretPortable;
+//#endif
     // Call the interpreter
     (*stdInterp)(self);
 

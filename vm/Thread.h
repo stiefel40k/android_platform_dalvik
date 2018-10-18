@@ -186,6 +186,9 @@ struct Thread {
      * checks by delaying the reset of curHandlerTable to mainHandlerTable.
      */
     int         singleStepCount;
+#ifdef TAINT_IS_86
+    u4          dummy; // needed because otherwise with TAINT_IS_86 the asm offset is off
+#endif
 
 #ifdef WITH_JIT
     struct JitToInterpEntries jitToInterpEntries;
