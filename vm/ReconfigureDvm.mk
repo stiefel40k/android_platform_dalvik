@@ -19,16 +19,7 @@ dvm_os := $(TARGET_OS)
 dvm_arch := $(TARGET_ARCH)
 dvm_arch_variant := $(TARGET_ARCH_VARIANT)
 
-# for single arch-variant if x86
-ifeq ($(dvm_arch),x86)
-  dvm_arch_variant := x86
-endif
-
 include $(LOCAL_PATH)/Dvm.mk
-
-ifeq ($(INTEL_HOUDINI),true)
-    LOCAL_CFLAGS += -DWITH_HOUDINI
-endif
 
 LOCAL_SHARED_LIBRARIES += \
 	libcorkscrew \
@@ -39,6 +30,9 @@ LOCAL_SHARED_LIBRARIES += \
 	libselinux \
 	libz
 
+ifeq ($(INTEL_HOUDINI),true)
+    LOCAL_CFLAGS += -DWITH_HOUDINI
+endif
 LOCAL_STATIC_LIBRARIES += libdex
 
 ifeq ($(INTEL_HOUDINI),true)

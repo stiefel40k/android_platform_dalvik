@@ -16,11 +16,11 @@
 
 package com.android.dx.dex.code;
 
+import com.android.dex.util.ExceptionWithContext;
 import com.android.dx.io.Opcodes;
 import com.android.dx.rop.cst.Constant;
 import com.android.dx.rop.cst.CstBaseMethodRef;
 import com.android.dx.util.AnnotatedOutput;
-import com.android.dx.util.ExceptionWithContext;
 import com.android.dx.util.FixedSizeList;
 import com.android.dx.util.IndentingWriter;
 

@@ -16,13 +16,18 @@
     SAVEAREA_FROM_FP(r0, rFP)           @ r0<- saveArea (old)
     ldr     r10, [r0, #offStackSaveArea_prevFrame] @ r10<- saveArea->prevFrame
     ldrb    r8, [rSELF, #offThread_breakFlags] @ r8<- breakFlags
+// begin ANDROID4.4
+    ldr     r2, [r10, #(offStackSaveArea_method - sizeofStackSaveArea)]
+// end ANDROID4.4
     ldr     rPC, [r0, #offStackSaveArea_savedPc] @ rPC<- saveArea->savedPc
 #if !defined(WITH_SELF_VERIFICATION)
     ldr     r9,  [r0, #offStackSaveArea_returnAddr] @ r9<- chaining cell ret
 #else
     mov     r9, #0                      @ disable chaining
 #endif
-    ldr     r2, [r10, #(offStackSaveArea_method - sizeofStackSaveArea)]
+// begin ANDROID4.3
+//  ldr     r2, [r10, #(offStackSaveArea_method - sizeofStackSaveArea)]
+// end ANDROID4.3
                                         @ r2<- method we're returning to
     cmp     r2, #0                      @ break frame?
 #if !defined(WITH_SELF_VERIFICATION)

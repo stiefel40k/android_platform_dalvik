@@ -24,9 +24,13 @@
 #
 # Compiler defines.
 #
-LOCAL_CFLAGS += -fstrict-aliasing -Wstrict-aliasing=2 -fno-align-jumps
+LOCAL_CFLAGS += -fstrict-aliasing -Wstrict-aliasing=2
 LOCAL_CFLAGS += -Wall -Wextra -Wno-unused-parameter
 LOCAL_CFLAGS += -DARCH_VARIANT=\"$(dvm_arch_variant)\"
+
+ifneq ($(strip $(LOCAL_CLANG)),true)
+LOCAL_CFLAGS += -fno-align-jumps
+endif
 
 # Turn on Taint Tracking
 ifeq ($(WITH_TAINT_TRACKING),true)
@@ -42,9 +46,6 @@ endif
 #
 # Optional features.  These may impact the size or performance of the VM.
 #
-
-# Houdini support
-LOCAL_CFLAGS += -DMTERP_NO_UNALIGN_64
 
 # Make a debugging version when building the simulator (if not told
 # otherwise) and when explicitly asked.
@@ -242,7 +243,6 @@ ifeq ($(WITH_JIT),true)
 endif
 
 LOCAL_C_INCLUDES += \
-	$(JNI_H_INCLUDE) \
 	dalvik \
 	dalvik/vm \
 	external/zlib \
@@ -386,3 +386,5 @@ ifeq ($(MTERP_ARCH_KNOWN),false)
   LOCAL_CFLAGS += -DdvmAsmInstructionStart=0 -DdvmAsmInstructionEnd=0 \
 	-DdvmAsmSisterStart=0 -DdvmAsmSisterEnd=0 -DDVM_NO_ASM_INTERP=1
 endif
+
+$(info final CFLAGS: $(LOCAL_CFLAGS))

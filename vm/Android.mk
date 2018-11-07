@@ -99,6 +99,7 @@ include $(BUILD_SHARED_LIBRARY)
 # Build for the host.
 #
 
+$(info am i building for host: $(WITH_HOST_DALVIK))
 ifeq ($(WITH_HOST_DALVIK),true)
 
     include $(CLEAR_VARS)
@@ -111,7 +112,7 @@ ifeq ($(WITH_HOST_DALVIK),true)
     WITH_JIT := true
     include $(LOCAL_PATH)/Dvm.mk
 
-    LOCAL_SHARED_LIBRARIES += libcrypto libssl libicuuc libicui18n
+    LOCAL_SHARED_LIBRARIES += libnativehelper libcrypto-host libssl-host libicuuc-host libicui18n-host
 
     LOCAL_LDLIBS := -lpthread -ldl
     ifeq ($(HOST_OS),linux)

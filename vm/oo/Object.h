@@ -86,10 +86,6 @@ enum ClassFlags {
     CLASS_ISPREVERIFIED        = (1<<16), // class has been pre-verified
 };
 
-/* bits we can reasonably expect to see set in a DEX access flags field */
-#define EXPECTED_FILE_FLAGS \
-    (ACC_CLASS_MASK | CLASS_ISPREVERIFIED | CLASS_ISOPTIMIZED)
-
 /*
  * Get/set class flags.
  */
@@ -313,6 +309,8 @@ struct Field {
     const char*     signature;      /* e.g. "I", "[C", "Landroid/os/Debug;" */
     u4              accessFlags;
 };
+
+u4 dvmGetFieldIdx(const Field* field);
 
 /*
  * Static field.
@@ -601,6 +599,8 @@ struct Method {
     bool            needHoudini;
 #endif
 };
+
+u4 dvmGetMethodIdx(const Method* method);
 
 
 /*

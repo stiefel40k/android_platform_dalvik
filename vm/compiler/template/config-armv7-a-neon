@@ -31,7 +31,12 @@ import armv5te-vfp_taint/platform.S
 #import c/opcommon.c
 
 # opcode list; argument to op-start is default directory
-op-start armv5te-vfp_taint
+## begin ANDROID4.3
+##op-start armv5te-vfp_taint
+## end ANDROID4.3
+## begin ANDROID4.4
+op-start armv7-a-neon
+## end ANDROID4.4
     op TEMPLATE_CMP_LONG armv5te_taint
     op TEMPLATE_INVOKE_METHOD_CHAIN armv5te_taint
     op TEMPLATE_INVOKE_METHOD_NATIVE armv5te_taint
@@ -56,6 +61,8 @@ op-start armv5te-vfp_taint
     op TEMPLATE_INVOKE_METHOD_NATIVE_PROF armv5te_taint
     op TEMPLATE_INVOKE_METHOD_NO_OPT_PROF armv5te_taint
     op TEMPLATE_RETURN_PROF armv5te_taint
+    # SZG: FIXME: I have no idea if this needs to be tained or not
+    op TEMPLATE_MEM_OP_DECODE armv5te-vfp_taint
 op-end
 
 # "helper" code for C; include if you use any of the C stubs (this generates
