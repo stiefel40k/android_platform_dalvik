@@ -133,7 +133,7 @@
 .L__aeabi_cfcmple:
     .word   __aeabi_cfcmple
 
-    .global dmvCompilerTemplateEnd
-dmvCompilerTemplateEnd:
+    .global dvmCompilerTemplateEnd
+dvmCompilerTemplateEnd:
 
 #endif /* WITH_JIT */

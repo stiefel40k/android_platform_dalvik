@@ -32,10 +32,10 @@ import armv5te-vfp_taint/platform.S
 
 # opcode list; argument to op-start is default directory
 ## begin ANDROID4.3
-##op-start armv5te-vfp_taint
+op-start armv5te-vfp_taint
 ## end ANDROID4.3
 ## begin ANDROID4.4
-op-start armv7-a-neon
+##op-start armv7-a-neon
 ## end ANDROID4.4
     op TEMPLATE_CMP_LONG armv5te_taint
     op TEMPLATE_INVOKE_METHOD_CHAIN armv5te_taint
