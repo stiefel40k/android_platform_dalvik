@@ -355,12 +355,18 @@ bool dvmLoadNativeCode(const char* pathName, Object* classLoader,
 #ifdef WITH_TAINT_TRACKING
     // PJG/BEA: TODO: factor out this check
     if (strncmp(pathName, "/system", sizeof("/system")-1) != 0 && strcmp(pathName, "libjavacore.so") !=0 && strcmp(pathName, "libnativehelper.so") !=0) {
-    	ALOGW("Denying lib %s (not \"/system\" prefix)\n", pathName);
-    	return false;
+// begin WITH_TAINT_TRACKING_GABOR
+    	//ALOGW("Denying lib %s (not \"/system\" prefix)\n", pathName);
+    	//return false;
+    	ALOGW("WARNING lib %s (not \"/system\" prefix) ==> Possible taint loss\n", pathName);
+// end WITH_TAINT_TRACKING_GABOR
     }
     if (strstr(pathName, "/../") != NULL) {
-    	ALOGW("Denying lib %s (contains \"/../\")\n", pathName);
-    	return false;
+// begin WITH_TAINT_TRACKING_GABOR
+    	//ALOGW("Denying lib %s (contains \"/../\")\n", pathName);
+    	//return false;
+    	ALOGW("WARNING lib %s (contains \"/../\") ==> Possible taint loss\n", pathName);
+// end WITH_TAINT_TRACKING_GABOR
     }
 #endif
 
